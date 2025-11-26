@@ -1,75 +1,64 @@
-# Nuxt Minimal Starter
+# Ocean Notes (Nuxt 3)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Modern notes app UI with sidebar layout and editor, following the Ocean Professional theme.
 
-## Setup
+## Quickstart
 
-Make sure to install dependencies:
-
+1. Install dependencies
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+2. Configure environment (optional)
+Create a `.env` file at the project root and set:
 ```bash
-# npm
+NUXT_PUBLIC_API_BASE=http://localhost:4000
+```
+If `NUXT_PUBLIC_API_BASE` is not set, the app will use in-memory mock data so you can still preview the UI.
+
+3. Run dev server
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+Open http://localhost:3000
 
-## Production
+## Environment Variables
 
-Build the application for production:
+See `.env.example` for the common variables:
+- NUXT_PUBLIC_API_BASE: Base URL for backend API (e.g., http://localhost:4000)
+- Other NUXT_PUBLIC_* variables are read and exposed via runtimeConfig for reference.
 
-```bash
-# npm
-npm run build
+## Features
 
-# pnpm
-pnpm build
+- Sidebar navigation with clean, modern styling
+- Notes list with search, tag filtering, sort by update time
+- Create, edit (title/content/tags), delete, favorite, archive
+- Optimistic UI updates with rollback on API errors
+- Toast notifications and confirm modal
+- Loading skeletons and empty states
+- Responsive design, subtle shadows, rounded corners, gradients
 
-# yarn
-yarn build
+## API
 
-# bun
-bun run build
-```
+The frontend expects the backend to expose REST endpoints:
+- GET /notes
+- POST /notes
+- PUT /notes/:id
+- PUT /notes/:id/favorite
+- PUT /notes/:id/archive
+- DELETE /notes/:id
 
-Locally preview production build:
+When `NUXT_PUBLIC_API_BASE` is not set, an in-memory mock is used.
 
-```bash
-# npm
-npm run preview
+## Styling
 
-# pnpm
-pnpm preview
+The Ocean Professional palette is applied via CSS variables in `app.vue`:
+- primary #2563EB
+- success/secondary #F59E0B
+- error #EF4444
+- text #111827
+- background #f9fafb
+- surface #ffffff
+- gradient from-blue-500/10 to-gray-50
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+You can integrate Tailwind CSS later if desired.
